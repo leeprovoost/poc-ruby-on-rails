@@ -58,6 +58,42 @@ Generate migration for Paperclip:
 rails generate paperclip track audio
 ```
 
+Update `app/views/tracks/_form.hmtl.erb`:
+```
+<%= form_for @track, :url => track_path, :html => { :multipart => true } do |f| %>
+  <% if @track.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@track.errors.count, "error") %> prohibited this track from being saved:</h2>
+
+      <ul>
+      <% @track.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :dj %><br>
+    <%= f.text_field :dj %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.text_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :audio %><br>
+    <%= form.file_field :audio %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+```
 
 
 ## Useful links
