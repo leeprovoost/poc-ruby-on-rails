@@ -15,5 +15,13 @@ rails new .  (don't overwrite .gitignore)
 rm README.rdoc
 ```
 
+Add models:
+```
+rails g scaffold Dj artist_name:string
+rails g scaffold Track title:string dj:references duration:string
+```
+
+
+
 
 
