@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Track Art</th>
       <th>Title</th>
       <th>Dj</th>
       <th>Duration</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @tracks.each do |track| %>
       <tr>
+        <td><%= image_tag track.track_art.url(:thumb) %></td>
         <td><%= track.title %></td>
         <td><%= track.dj %></td>
         <td><%= track.duration %></td>
@@ -68,7 +70,6 @@
   </div>
  </div>
 </div>
-
 
         </td>
         <td><%= link_to 'Show', track %></td>

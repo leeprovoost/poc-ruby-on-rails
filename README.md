@@ -199,7 +199,7 @@ You need to add the following code in your `app/views/tracks/index.html.erb`:
   </div>
   <div class="sm2-playlist-wrapper">
     <ul class="sm2-playlist-bd">
-     <li><a href="<%= track.audio.url %>">< <%= track.title %></a></li>
+     <li><a href="<%= track.audio.url %>"><%= track.title %></a></li>
     </ul>
   </div>
  </div>
@@ -208,7 +208,63 @@ You need to add the following code in your `app/views/tracks/index.html.erb`:
 
 ### Add support for uploading track cover art
 
+Update your model `app/models/track.rb`:
+```
+class Track < ActiveRecord::Base
+ 	belongs_to :dj
 
+  	has_attached_file :audio
+	validates_attachment_content_type :audio, :content_type => [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio' ]
+
+  	has_attached_file :track_art, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  	validates_attachment_content_type :track_art, :content_type => /\Aimage\/.*\Z/
+end
+```
+
+Generate migration for Paperclip:
+```
+rails generate paperclip track track_art
+```
+
+Update `app/views/tracks/_form.hmtl.erb`. Add extra formfield:
+```
+  <div class="field">
+    <%= f.label :track_art %><br>
+    <%= f.file_field :track_art %>
+  </div>
+```
+
+Allow file to be uploaded in the Tracks controller (`app/controllers/tracks_controller.rb`). Add `:track_art` to `params.require`:
+```
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_track
+      @track = Track.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def track_params
+      params.require(:track).permit(:title, :dj_id, :duration, :audio, :track_art)
+    end
+```
+
+Run database migration:
+```
+rake db:migrate
+```
+
+Show the album art in `app/views/tracks/index.html.erb`:
+```
+<td><%= image_tag track.track_art.url(:thumb) %></td>
+```
+
+and `app/views/tracks/show.html.erb`:
+```
+<p>
+  <strong>Track Art:</strong>
+  <%= image_tag @track.track_art.url(:medium) %>
+</p>
+```
 
 ## Run 
 

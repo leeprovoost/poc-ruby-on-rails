@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216191232) do
+ActiveRecord::Schema.define(version: 20141217184945) do
 
   create_table "djs", force: true do |t|
     t.string   "artist_name"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20141216191232) do
     t.string   "audio_content_type"
     t.integer  "audio_file_size"
     t.datetime "audio_updated_at"
+    t.string   "track_art_file_name"
+    t.string   "track_art_content_type"
+    t.integer  "track_art_file_size"
+    t.datetime "track_art_updated_at"
   end
 
   add_index "tracks", ["dj_id"], name: "index_tracks_on_dj_id"

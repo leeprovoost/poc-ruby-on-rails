@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Track Art:</strong>
+  <%= image_tag @track.track_art.url(:medium) %>
+</p>
+
+<p>
   <strong>Title:</strong>
   <%= @track.title %>
 </p>
