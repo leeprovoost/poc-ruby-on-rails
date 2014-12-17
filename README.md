@@ -1,8 +1,8 @@
 # music-app
 
-Playground to test Ruby on Rails. This focuses on file uploads.
+Playground to test Ruby on Rails. This focuses on file uploads. This README.md describes step by step how to recreate the application from scratch.
 
-## Development
+## How-to step-by-step
 
 ### Set up application foundation
 
