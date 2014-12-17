@@ -2,7 +2,9 @@
 
 Playground to test Ruby on Rails
 
-# Development
+## Development
+
+### Set up application foundation
 
 Create new Github repository using the name music-app. Initialise for Ruby language.
 
@@ -20,6 +22,8 @@ Add models:
 rails g scaffold Dj artist_name:string
 rails g scaffold Track title:string dj:references duration:string
 ```
+
+### Add Paperclip for file uploads
 
 Install and configure Imagemagick: 
 ```brew install imagemagick```
@@ -42,6 +46,8 @@ Install gem:
 ```
 bundle install
 ```
+
+### Add Paperclip upload support for tracks
 
 Update Track model (`app/models/track.rb`):
 ```
@@ -124,6 +130,8 @@ Run database migration:
 ```
 rake db:migrate
 ```
+
+### Add Soundmanager 2 HTML5 music player
 
 We are going to use Soundmanager 2, which you can download here: http://www.schillmania.com/projects/soundmanager2/doc/download/. 
 
