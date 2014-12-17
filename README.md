@@ -23,6 +23,17 @@ rails g scaffold Dj artist_name:string
 rails g scaffold Track title:string dj:references duration:string
 ```
 
+Add default page to your routes `config/routes.rb`:
+```
+MusicApp::Application.routes.draw do
+
+  resources :tracks
+  resources :djs
+
+  root to: "tracks#index"
+end
+```
+
 ### Add Paperclip for file uploads
 
 Install and configure Imagemagick: 
@@ -56,17 +67,6 @@ class Track < ActiveRecord::Base
 
   	has_attached_file :audio
 	validates_attachment_content_type :audio, :content_type => [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio' ]
-end
-```
-
-Add default page to your routes `config/routes.rb`:
-```
-MusicApp::Application.routes.draw do
-
-  resources :tracks
-  resources :djs
-
-  root to: "tracks#index"
 end
 ```
 
