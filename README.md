@@ -1,6 +1,8 @@
-# music-app
+# poc-ruby-on-rails
 
-Playground to test Ruby on Rails. This focuses on file uploads. This README.md describes step by step how to recreate the application from scratch.
+Proof-of-Concept application to learn about Ruby on Rails. This is part of my ["learn a new thing every month" project](http://leeprovoost.github.io/). 
+
+This Rails app allows you to upload songs and then listen to them using an HTML5 player. 
 
 ## How-to step-by-step
 
